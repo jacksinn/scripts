@@ -7,6 +7,6 @@ if [ -z "$1" ]
     project=$1
 fi
 _now=$(date +"%m_%d_%Y_%H_%M")
-_file="/Users/stevenjackson/dumps/${project}_$_now.sql"
+_file="$HOME/dumps/${project}_$_now.sql"
 echo "Starting backup to $_file..."
 drush sql-dump > "$_file"
