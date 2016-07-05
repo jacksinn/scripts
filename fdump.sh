@@ -7,6 +7,6 @@ if [ -z "$1" ]
     project=$1
 fi
 _now=$(date +"%m_%d_%Y_%H_%M")
-_file="$HOME/dumps/db/${project}_db_$_now.sql"
+_file="$HOME/dumps/files/${project}_files_$_now.tgz"
 echo "Starting backup to $_file..."
-drush sql-dump > "$_file"
+tar czvf "$_file" sites/default/files
