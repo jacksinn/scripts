@@ -14,21 +14,25 @@ func main() {
 	}
 	// fmt.Println(arg)
 	cmdGit := "git"
+	//git add .
 	cmdArgs := []string{"add", "."}
 	tryExec(cmdGit, cmdArgs)
 
+	//git commit -m "my commit message || Default"
 	cmdArgs = []string{"commit", "-m", arg}
 	tryExec(cmdGit, cmdArgs)
 
+	//git push
 	cmdArgs = []string{"push"}
 	tryExec(cmdGit, cmdArgs)
-
+	
+	//was outputting now im not
 	// sha := string(out)
 	// fmt.Println(sha)
 }
 
 func tryExec(cmd []string, cmdArgs []string){
-		out, err := exec.Command(cmdGit, cmdArgs...).Output()
+	out, err := exec.Command(cmdGit, cmdArgs...).Output()
 	if(err != nil){
 		log.Fatal(err)
 	}

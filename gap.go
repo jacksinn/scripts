@@ -12,29 +12,24 @@ func main() {
 	if(len(os.Args) > 1){
 		arg = os.Args[1]
 	}
-	fmt.Println(arg)
+	// fmt.Println(arg)
 	cmdGit := "git"
+	//git add .
 	cmdArgs := []string{"add", "."}
-	out, err := exec.Command(cmdGit, cmdArgs...).Output()
-	if(err != nil){
-		fmt.Println("failed")
-		fmt.Println(out)
-		log.Fatal(err)
-	}
+	tryExec(cmdGit, cmdArgs)
 
+	//git commit -m "my commit message || Default"
 	cmdArgs = []string{"commit", "-m", arg}
-	out, err = exec.Command(cmdGit, cmdArgs...).Output()
-	if(err != nil){
-		fmt.Println("failed")
-		fmt.Println(out)
-		log.Fatal(err)
-	}
+	tryExec(cmdGit, cmdArgs)
 
+	//git push
 	cmdArgs = []string{"push"}
-	out, err = exec.Command(cmdGit, cmdArgs...).Output()
+	tryExec(cmdGit, cmdArgs)
+}
+
+func tryExec(cmd string, cmdArgs []string){
+	out, err := exec.Command(cmd, cmdArgs...).Output()
 	if(err != nil){
-		fmt.Println("failed")
-		fmt.Println(out)
 		log.Fatal(err)
 	}
 	sha := string(out)
